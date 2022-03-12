@@ -1,11 +1,11 @@
 @extends("admin.layouts.default")
 @section('breadcrumbs')
-    <li class="breadcrumb-item active"><a href="{{ route("admin.customers.index") }}">Customers</a></li>
-    @if(isset($data))
-        <li class="breadcrumb-item active" aria-current="page">{{trans('admiko.page_breadcrumbs_edit')}}</li>
-    @else
-        <li class="breadcrumb-item active" aria-current="page">{{trans('admiko.page_breadcrumbs_add')}}</li>
-    @endIf
+<li class="breadcrumb-item active"><a href="{{ route("admin.customers.index") }}">Customers</a></li>
+@if(isset($data))
+<li class="breadcrumb-item active" aria-current="page">{{trans('admiko.page_breadcrumbs_edit')}}</li>
+@else
+<li class="breadcrumb-item active" aria-current="page">{{trans('admiko.page_breadcrumbs_add')}}</li>
+@endIf
 @endsection
 @section('pageTitle')
 <h1>Customers</h1>
@@ -22,14 +22,19 @@
         @if(isset($data)) @method('PUT') @endIf
         @csrf
         <div class="card-body">
-            @if ($errors->any())<div class="row"><div class="col-2"></div><div class="col"><div class="invalid-feedback d-block">@foreach($errors->all() as $error) {{$error}}<br> @endforeach</div></div></div>@endif
+            @if ($errors->any())<div class="row">
+                <div class="col-2"></div>
+                <div class="col">
+                    <div class="invalid-feedback d-block">@foreach($errors->all() as $error) {{$error}}<br> @endforeach</div>
+                </div>
+            </div>@endif
             <div class="row">
-                
+
                 <div class=" col-12">
                     <div class="form-group row">
                         <label for="nama" class="col-md-2 col-form-label">Nama:</label>
                         <div class="col-md-10">
-                            <input type="text" class="form-control" id="nama" name="nama"  placeholder="Nama"  value="{{{ old('nama', isset($data)?$data->nama : '') }}}">
+                            <input type="text" class="form-control" id="nama" name="nama" placeholder="Nama" value="{{{ old('nama', isset($data)?$data->nama : '') }}}">
                             <div class="invalid-feedback @if ($errors->has('nama')) d-block @endif">{{trans('admiko.required_text')}}</div>
                             <small id="nama_help" class="text-muted"></small>
                         </div>
@@ -37,9 +42,19 @@
                 </div>
                 <div class=" col-12">
                     <div class="form-group row">
+                        <label for="email" class="col-md-2 col-form-label">Email:</label>
+                        <div class="col-md-10">
+                            <input type="text" class="form-control" id="nama" name="email" placeholder="Email" value="{{{ old('nama', isset($data)?$data->email : '') }}}">
+                            <div class="invalid-feedback @if ($errors->has('nama')) d-block @endif">{{trans('admiko.required_text')}}</div>
+                            <small id="email_help" class="text-muted"></small>
+                        </div>
+                    </div>
+                </div>
+                <div class=" col-12">
+                    <div class="form-group row">
                         <label for="alamat" class="col-md-2 col-form-label">Alamat:</label>
                         <div class="col-md-10">
-                            <input type="text" class="form-control" id="alamat" name="alamat"  placeholder="Alamat"  value="{{{ old('alamat', isset($data)?$data->alamat : '') }}}">
+                            <input type="text" class="form-control" id="alamat" name="alamat" placeholder="Alamat" value="{{{ old('alamat', isset($data)?$data->alamat : '') }}}">
                             <div class="invalid-feedback @if ($errors->has('alamat')) d-block @endif">{{trans('admiko.required_text')}}</div>
                             <small id="alamat_help" class="text-muted"></small>
                         </div>
@@ -49,9 +64,7 @@
                     <div class="form-group row">
                         <label for="no_telp" class="col-md-2 col-form-label">No. Telp:</label>
                         <div class="col-md-10">
-                            <input type="number" class="form-control limitPozNegNumbers numbersWidth" id="no_telp" name="no_telp"  placeholder="No. Telp"
-                                   step="1" 
-                                   value="{{{ old('no_telp', isset($data)?$data->no_telp : '') }}}">
+                            <input type="text" class="form-control limitPozNegNumbers numbersWidth" id="no_telp" name="no_telp" placeholder="No. Telp" step="1" value="{{{ old('no_telp', isset($data)?$data->no_telp : '') }}}">
                             <div class="invalid-feedback @if ($errors->has('no_telp')) d-block @endif">{{trans('admiko.required_text')}}</div>
                             <small id="no_telp_help" class="text-muted"></small>
                         </div>
